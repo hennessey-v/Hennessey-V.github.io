@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hennessey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="OneManager是什么这是一个利用微软onedrive api将onedrive目录映射成一个云盘的程序，类似的程序有很多，比如OneIndex、Pyone、OnePoint等等。这个程序的特点是支持多种onedrive类型，可以部署在vps，heroku，以及腾讯云scf上。项目地址 我的Demo 部署教程参考项目readme说明，网上一些博客也有不少教程，这不是本文的重点，本文主要讲的是部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OneManager高级设置">
+<meta property="og:url" content="http://hennessey-v.github.io/2021/08/18/Onedrive%E4%BA%91%E7%9B%98%E7%A8%8B%E5%BA%8F%E2%80%94%E2%80%94OneManager%E5%B0%8F%E7%99%BD%E8%AE%BE%E7%BD%AE%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="HennesseyBlog">
+<meta property="og:description" content="OneManager是什么这是一个利用微软onedrive api将onedrive目录映射成一个云盘的程序，类似的程序有很多，比如OneIndex、Pyone、OnePoint等等。这个程序的特点是支持多种onedrive类型，可以部署在vps，heroku，以及腾讯云scf上。项目地址 我的Demo 部署教程参考项目readme说明，网上一些博客也有不少教程，这不是本文的重点，本文主要讲的是部">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/13/GjMcnK.jpg">
+<meta property="article:published_time" content="2021-08-18T10:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-30T11:36:17.657Z">
+<meta property="article:author" content="Hennessey">
+<meta property="article:tag" content="Onedrive">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/13/GjMcnK.jpg">
+  
+  
+  <title>OneManager高级设置 - HennesseyBlog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/stytle.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"hennessey-v.github.io","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>HennesseyBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文章
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-th-large"></i>
+                页面
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://pan.hennessey.xyz/">
+                    
+                    Onedrive网盘
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/links/">
+                    
+                    友链
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/">
+                    
+                    关于
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://s1.ax1x.com/2020/04/13/GjMcnK.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="OneManager高级设置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-18 10:00" pubdate>
+        2021年8月18日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      undefined 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      NaN 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">OneManager高级设置</h1>
+            
+            <div class="markdown-body">
+              <h2 id="OneManager是什么"><a href="#OneManager是什么" class="headerlink" title="OneManager是什么"></a>OneManager是什么</h2><p>这是一个利用微软onedrive api将onedrive目录映射成一个云盘的程序，类似的程序有很多，比如OneIndex、Pyone、OnePoint等等。这个程序的特点是支持多种onedrive类型，可以部署在vps，heroku，以及腾讯云scf上。<br><a target="_blank" rel="noopener" href="https://github.com/qkqpttgf/OneManager-php">项目地址</a> <a target="_blank" rel="noopener" href="https://service-ps9dmx7o-1304376991.hk.apigw.tencentcs.com/release/Cloud/CloudA/">我的Demo</a></p>
+<h2 id="部署教程"><a href="#部署教程" class="headerlink" title="部署教程"></a>部署教程</h2><p>参考项目readme说明，网上一些博客也有不少教程，这不是本文的重点，本文主要讲的是部署好后的设置问题。<br>部署成功后在设置-&gt;首页里添加相应的盘，可以添加多个盘，同一个盘也可以添加多次。</p>
+<h2 id="平台变量"><a href="#平台变量" class="headerlink" title="平台变量"></a>平台变量</h2><p>登录后，在<code>管理</code>&gt;<code>设置</code>里有一些自定义设置，有些人不清楚这些设置是干嘛的，这可以理解，毕竟项目的说明写的太简单了。<br>注意本文的操作都是针对程序默认主题来说的，其他主题由于是第三方人员开发，不保证所有功能都能正常使用。</p>
+<h3 id="adminloginpage"><a href="#adminloginpage" class="headerlink" title="adminloginpage"></a>adminloginpage</h3><p>自定义登录地址，设置后就会隐藏登录按钮(有些主题本来就没有登录按钮)，登录时需要手动在网盘地址后加上<code>?你设置的值</code>进行登录。<br>比如设置为<code>abc</code>，那么你只能通过<code>http://xxx.com/xxx?abc</code>地址来登录 。所以一旦设置就要记住你设置的值，不然连你自己也没法知道登录地址那就麻烦了。<br>这个设置是为了防止别人通过默认的登录界面尝试登录你的网盘，设置本项后只要猜不到登录界面，即使别人知道登录密码也没用，多一道防护墙，让网盘更安全。</p>
+<h3 id="autoJumpFirstDisk"><a href="#autoJumpFirstDisk" class="headerlink" title="autoJumpFirstDisk"></a>autoJumpFirstDisk</h3><p>设置点击网盘标题时跳转到绑定的第一个盘还是当前绑定的网盘根目录。</p>
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>自定义背景图片，填入一个图片的url地址，因为图片加载通常需要更多时间，为了速度考虑不建议放入大体积图片。</p>
+<h3 id="backgroundm"><a href="#backgroundm" class="headerlink" title="backgroundm"></a>backgroundm</h3><p>手机端显示的背景图片地址。</p>
+<h3 id="customCss"><a href="#customCss" class="headerlink" title="customCss"></a>customCss</h3><p>设置自定义css的地方，这里设置的css会作用于网盘所有页面。<br>比如我想隐藏语言选项框：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"><span class="selector-class">.changelanguage</span>&#123;<span class="attribute">display</span>:none&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同时隐藏复制下载链接按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"><span class="selector-class">.file</span> <span class="selector-tag">button</span>&#123;<span class="attribute">display</span>:none&#125;<span class="selector-class">.changelanguage</span>&#123;<span class="attribute">display</span>:none&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="customScript"><a href="#customScript" class="headerlink" title="customScript"></a>customScript</h3><p>设置自定义js，会作用于所有页面。<br>比如设置http重定向到https：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> targetProtocol = <span class="string">&quot;https:&quot;</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (<span class="built_in">window</span>.location.protocol != targetProtocol)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.location.href = targetProtocol + <span class="built_in">window</span>.location.href.substring(<span class="built_in">window</span>.location.protocol.length);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="customTheme"><a href="#customTheme" class="headerlink" title="customTheme"></a>customTheme</h3><p>通过url的方式引用html主题，比如你可以通过设置下面的地址来使用我的主题。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cdn.jsdelivr.net/gh/kizx/onemoe-theme/onemoe.html</span><br></pre></td></tr></table></figure>
+
+<h3 id="disableChangeTheme"><a href="#disableChangeTheme" class="headerlink" title="disableChangeTheme"></a>disableChangeTheme</h3><p>设置为<code>1</code>后游客浏览时将不显示右下角的主题切换功能。</p>
+<h3 id="disableShowThumb"><a href="#disableShowThumb" class="headerlink" title="disableShowThumb"></a>disableShowThumb</h3><p>设置为<code>1</code>后将不显示缩略图的按钮和功能，对于云函数用户来说，建议设为<code>1</code>来关闭该功能，因为该功能可能点一下就是一分钱。</p>
+<h3 id="hideFunctionalityFile"><a href="#hideFunctionalityFile" class="headerlink" title="hideFunctionalityFile"></a>hideFunctionalityFile</h3><p>设置为<code>1</code>后，游客浏览网盘时就会看不到read.md，head.md，head.ofm，foo.omf这些文件，这些文件是干嘛的后面会说。</p>
+<h3 id="passfile"><a href="#passfile" class="headerlink" title="passfile"></a>passfile</h3><p>设置密码文件名，比如这里设置为password.txt，那么在某一个目录下新建一个password.txt文件，其中写入密码，这样任何人在浏览这个网盘目录时都需要输入相应密码后才能访问。</p>
+<h3 id="sitename"><a href="#sitename" class="headerlink" title="sitename"></a>sitename</h3><p>设置网站名称。</p>
+<h3 id="theme"><a href="#theme" class="headerlink" title="theme"></a>theme</h3><p>切换主题。</p>
+<h3 id="timezone"><a href="#timezone" class="headerlink" title="timezone"></a>timezone</h3><p>设置时区，国内可设置为8。</p>
+<h2 id="每个盘独立变量"><a href="#每个盘独立变量" class="headerlink" title="每个盘独立变量"></a>每个盘独立变量</h2><h3 id="diskname"><a href="#diskname" class="headerlink" title="diskname"></a>diskname</h3><p>多盘在网盘界面显示的名称。</p>
+<h3 id="domain-path"><a href="#domain-path" class="headerlink" title="domain_path"></a>domain_path</h3><p>当绑定多个域名时，可以使不同域名打开时访问不同目录。当然如果你只有一个域名也可以用，通过这种方式可以使当前域名访问一个指定子目录，和后面的public_path起到一样的作用。<br>下面是两个域名的设置方法，中间用<code>|</code>隔开，如果有多个域名只设置一个域名时，未设置的域名好像也会只访问该目录，要访问根目录dirname设置为<code>/</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">domain1.com:/dir1name|domain2.com:/dir2name</span><br></pre></td></tr></table></figure>
+
+<h3 id="downloadencrypt"><a href="#downloadencrypt" class="headerlink" title="downloadencrypt"></a>downloadencrypt</h3><p>设置为<code>1</code>时启用该功能，这样在设置了密码的目录下的文件虽然无法在网页端浏览，但可以通过具体的文件链接进行下载。</p>
+<h3 id="guestup-path"><a href="#guestup-path" class="headerlink" title="guestup_path"></a>guestup_path</h3><p>设置图床路径或者叫游客上传路径，设置后游客只能看到上传按钮看不到目录下的文件。</p>
+<h3 id="public-path"><a href="#public-path" class="headerlink" title="public_path"></a>public_path</h3><p>设置该盘的显示的根目录，默认为<code>/</code>，换个说法就是可以显示指定的文件夹，默认显示全部。<br>比如我们只想将网盘下的public文件夹内容作为网盘，可以设置为<code>/public/</code>。<br>有了这个功能，即使只有一个onedrive账号，我们也可以通过重复绑定同一个账号来生成多盘，然后每个盘的public_path设置为不同的路径，这样可以将一个盘的功能分开。</p>
+<hr>
+<p>还有一种特殊情况是我既想让游客上传文件，又想让游客看见上传后的文件目录，目前就只能通过这种方法将该目录设置到两个盘，一个盘作上传，一个盘作目录展示。</p>
+<h2 id="进阶设置"><a href="#进阶设置" class="headerlink" title="进阶设置"></a>进阶设置</h2><h3 id="设置网站ico图标"><a href="#设置网站ico图标" class="headerlink" title="设置网站ico图标"></a>设置网站ico图标</h3><p>将favicon.ico图片放在网盘根目录下，<del>如果你设置了多盘的的话，则需要在每个盘的根目录下都放置一个favicon.ico文件</del>，新版的html主题只需要在绑定的第一个盘下面设置就行了。<br>当然你也可以在customCss或customScript中进行全局设置：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cloud.tencent.com/favicon.ico&quot;</span> <span class="attr">type</span>=<span class="string">&quot;image/x-icon&quot;</span>&gt;</span></span><br><span class="line">这里我使用了腾讯云的网站图标，你应该改为自己的favicon.ico图片地址。</span><br></pre></td></tr></table></figure>
+
+<h3 id="刷新自动切换背景图片"><a href="#刷新自动切换背景图片" class="headerlink" title="刷新自动切换背景图片"></a>刷新自动切换背景图片</h3><p>这个是通过设置特殊的图片api来实现的，这些api每次刷新都会返回一张不同的图片，将后台background设置为这些api的url即可。<br>网上类似的api有很多，以下是群友收集的免费图片api：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">https://api.ixiaowai.cn/api/api.php (二次元动漫)</span><br><span class="line">http://www.dmoe.cc/random.php（二次元随机图）</span><br><span class="line">https://api.ixiaowai.cn/mcapi/mcapi.php （menhera酱）</span><br><span class="line">https://api.ixiaowai.cn/gqapi/gqapi.php （风景）</span><br><span class="line">https://acg.yanwz.cn/wallpaper/api.php（二次元随机图）</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用index-html设置自定义页面"><a href="#利用index-html设置自定义页面" class="headerlink" title="利用index.html设置自定义页面"></a>利用index.html设置自定义页面</h3><p>如果一个目录下有名为index.html的文件，则直接显示该文件，可以利用这个功能设置一个自定义页面或者用于隐藏一个特定页面，相当于部署了一个静态页面。</p>
+<h3 id="设置顶部和底部说明文字"><a href="#设置顶部和底部说明文字" class="headerlink" title="设置顶部和底部说明文字"></a>设置顶部和底部说明文字</h3><p>在需要展示顶部说明的目录下新建一个<code>head.md</code>文件，在文件里写入说明内容即可，这是一个markdown文件，可以使用markdown语言进行书写。<br>底部说明说明文字对应的是<code>readme.md</code>文件，规则与顶部文字一样。</p>
+<h3 id="利用head-omf设置一言"><a href="#利用head-omf设置一言" class="headerlink" title="利用head.omf设置一言"></a>利用head.omf设置一言</h3><p>head.omf作用和head.md一样，区别是他不支持markdonw语言，但是支持html语言，可以写入html、css、js内容。<br>在想展示一言的目录新建<code>head.omf</code>文件，然后写入以下内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;hitokoto&quot;</span>&gt;</span>:D 获取中...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    fetch(<span class="string">&#x27;https://v1.hitokoto.cn&#x27;</span>)</span></span><br><span class="line"><span class="javascript">        .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span></span><br><span class="line"><span class="javascript">        .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> hitokoto = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;hitokoto&#x27;</span>)</span></span><br><span class="line"><span class="javascript">            hitokoto.innerText = data.hitokoto</span></span><br><span class="line"><span class="javascript">        &#125;)</span></span><br><span class="line"><span class="javascript">        .catch(<span class="built_in">console</span>.error)</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上是使用了<a target="_blank" rel="noopener" href="https://developer.hitokoto.cn/">https://developer.hitokoto.cn/</a> 的一言接口，你也可以尝试更换其他接口或者自建接口。</p>
+<h3 id="利用foot-omf设置Valine评论"><a href="#利用foot-omf设置Valine评论" class="headerlink" title="利用foot.omf设置Valine评论"></a>利用foot.omf设置Valine评论</h3><p>使用Valine需要先注册<a target="_blank" rel="noopener" href="https://www.leancloud.cn/">LeanCloud</a>并实名认证，然后新建应用获取AppID和AppKey。<br>具体过程参考：<a target="_blank" rel="noopener" href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br>然后新建<code>foot.omf</code>，写入以下内容（注意填入替换自己的AppID和AppKey）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&#x27;//unpkg.com/valine/dist/Valine.min.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;vcomments&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Valine(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>: <span class="string">&#x27;#vcomments&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">appId</span>: <span class="string">&#x27;你获取的AppID&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">appKey</span>: <span class="string">&#x27;你获取的AppKey&#x27;</span></span></span><br><span class="line"><span class="javascript">    &#125;)</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>ps: 上面的js用的是unpkg的cdn，国内速度完全不行，建议改用jsdelivr的cdn</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&#x27;//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>如果对样式不满意，建议直接在omf文件写css美化。</li>
+</ul>
+<h3 id="设置动态背景"><a href="#设置动态背景" class="headerlink" title="设置动态背景"></a>设置动态背景</h3><p>这里的动态背景指我们经常在一些网页见到的那种下雪、粒子线条、彩条等动态背景，一般是通过js实现的，可以自己在网上找找现成的教程，js我不会，这里只展示一种我找到的动态彩条背景。<br>我将下面的代码写在了foot.omf中，可以访问 <a target="_blank" rel="noopener" href="https://pan.2bboy.com/home/test/colored-ribbon/">https://pan.2bboy.com/home/test/colored-ribbon/</a> 查看其效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">size</span>=<span class="string">&quot;90&quot;</span> <span class="attr">alpha</span>=<span class="string">&quot;0.5&quot;</span> <span class="attr">zIndex</span>=<span class="string">&quot;0&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://pan.2bboy.com/ppx/test/ribbon.js&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中最重要的是 ribbon.js 这个js文件，我将他放在网盘目录下，你应该下载该文件放在自己的云空间里，然后替换引用的地址。<br>如果将代码放在omf文件里则只能在当前目录有效果，设置在后台的customScript中就可以全局生效了。</p>
+<p>当然只要你懂点js，利用omf文件可以玩出很多东西，比我这里有一些示例：<a target="_blank" rel="noopener" href="https://pan.2bboy.com/home/test/">https://pan.2bboy.com/home/test/</a></p>
+<h3 id="美化自定义登录页面"><a href="#美化自定义登录页面" class="headerlink" title="美化自定义登录页面"></a>美化自定义登录页面</h3><p>修改common.php相应地方，添加style和br</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$html</span> .= <span class="string">&#x27;</span></span><br><span class="line"><span class="string">    &lt;style&gt;body&#123;background-image:linear-gradient(60deg,#343b44 0%,#485563 100%);background-attachment:fixed;color:#343b44&#125;body&gt;div&#123;position:absolute;text-align:center;background-color:rgba(221,221,221,.5);border-radius:20px;width:75vw;max-width:500px;height:350px;margin:auto;top:25%;bottom:50%;left:0;right:0&#125;body&gt;div:hover&#123;box-shadow:3px 3px 6px 3px rgba(0,0,0,.3)&#125;h4&#123;font-size:40px&#125;input&#123;font-size:20px;margin:2%auto;border:#343b44 2px solid;border-radius:10px;padding:10px;height:50px;text-align:center&#125;input:last-of-type&#123;color:#343b44;height:50px;width:80px;font-weight:800&#125;input:hover:last-of-type&#123;cursor:pointer;color:#ddd;background-color:#485563&#125;&lt;/style&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;center&gt;&lt;h4&gt;&#x27;</span>.getconstStr(<span class="string">&#x27;InputPassword&#x27;</span>).<span class="string">&#x27;&lt;/h4&gt;</span></span><br><span class="line"><span class="string">      &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;</span></span><br><span class="line"><span class="string">          &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input name=&quot;password1&quot; type=&quot;password&quot;/&gt;</span></span><br><span class="line"><span class="string">            &lt;/br&gt;</span></span><br><span class="line"><span class="string">            &lt;input type=&quot;submit&quot; value=&quot;&#x27;</span>.getconstStr(<span class="string">&#x27;Login&#x27;</span>).<span class="string">&#x27;&quot;&gt;</span></span><br><span class="line"><span class="string">          &lt;/div&gt;</span></span><br><span class="line"><span class="string">      &lt;/form&gt;</span></span><br><span class="line"><span class="string">      &lt;/center&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://pan.2bboy.com/img/2020/05/0530183122.png"><img src="https://pan.2bboy.com/img/2020/05/0530183122.png" alt="img"></a></p>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><ul>
+<li>游客上传文件时只能单个上传，不能批量上传。</li>
+<li>由于scf的缓存系统，在scf上进行某项改动后有时候不会立马生效，或者刷新后时而生效时而不生效，只要多等一会儿，等旧缓存自己失效就好了。</li>
+<li>php格式的主题为旧版主题，许多功能不支持，html格式的主题为新版主题，不同主题的作者更新频率和支持功能都可能不同，功能测试请以最新版本的默认主题为准。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Onedrive云盘程序——OneManager小白设置指南<br><a target="_blank" rel="noopener" href="https://www.2bboy.com/archives/176.html/comment-page-1">https://www.2bboy.com/archives/176.html/comment-page-1</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Onedrive/">Onedrive</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%8E%B7%E5%8F%96%E4%BA%AC%E4%B8%9CCookie%E6%95%99%E7%A8%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浏览器获取京东Cookie教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/17/TermuxLinux%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/">
+                        <span class="hidden-mobile">Termux/Linux搭建Hexo博客</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"7qN0KpHto0zijqd18lfoWoLR-MdYXbMMI","appKey":"7hhBrAPr8TpPqPiAAQG3P1Br","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div class="github-badge"> <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hexo</span> <span class="badge-subject">Theme</span><span class="badge-value bg-brightgreen">Fluid</span> <span class="badge-subject">Hosted</span><span class="badge-value bg-blue">GitHub&Vercel</span> </div> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div>
+
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
