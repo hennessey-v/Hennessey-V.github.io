@@ -61,6 +61,25 @@
   
   
   <entry>
+    <title>Markdown 列表</title>
+    <link href="/2021/09/19/Markdown03/"/>
+    <url>/2021/09/19/Markdown03/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Markdown-列表"><a href="#Markdown-列表" class="headerlink" title="Markdown 列表"></a>Markdown 列表</h1><p>Markdown 支持有序列表和无序列表。</p><p>无序列表使用星号(<em>****)、加号(<strong>+</strong>)或是减号(</em>*-**)作为列表标记，这些标记后面要添加一个空格，然后再填写内容：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">*</span> 第二项<br><span class="hljs-bullet">*</span> 第三项<br><br><span class="hljs-bullet">+</span> 第一项<br><span class="hljs-bullet">+</span> 第二项<br><span class="hljs-bullet">+</span> 第三项<br><br><br><span class="hljs-bullet">-</span> 第一项<br><span class="hljs-bullet">-</span> 第二项<br><span class="hljs-bullet">-</span> 第三项<br></code></pre></td></tr></table></figure><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//89446A8E-6D83-4666-AACC-980145D5F070.jpg" srcset="/img/loading.gif" lazyload alt="img"></p><p>有序列表使用数字并加上 <strong>.</strong> 号来表示，如：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项<br><span class="hljs-bullet">2.</span> 第二项<br><span class="hljs-bullet">3.</span> 第三项<br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//560384BB-2B00-41D5-ACF2-18972F7F2775.jpg" srcset="/img/loading.gif" lazyload alt="img"></p><h3 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h3><p>列表嵌套只需在子列表中的选项前面添加四个空格即可：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项：<br><span class="hljs-bullet">    -</span> 第一项嵌套的第一个元素<br><span class="hljs-bullet">    -</span> 第一项嵌套的第二个元素<br><span class="hljs-bullet">2.</span> 第二项：<br><span class="hljs-bullet">    -</span> 第二项嵌套的第一个元素<br><span class="hljs-bullet">    -</span> 第二项嵌套的第二个元素<br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//8ED795DA-F124-4E70-BA71-57CD9CF958A4.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Markdown 段落</title>
     <link href="/2021/09/18/Markdown02/"/>
     <url>/2021/09/18/Markdown02/</url>
