@@ -61,6 +61,25 @@
   
   
   <entry>
+    <title>Markdown 代码</title>
+    <link href="/2021/09/21/Markdown05/"/>
+    <url>/2021/09/21/Markdown05/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Markdown-代码"><a href="#Markdown-代码" class="headerlink" title="Markdown 代码"></a>Markdown 代码</h1><p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来（**`**），例如：</p><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">`printf()` 函数<br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//C928FDA3-E0A7-4AFF-AB2A-B3AF44F93DF9.jpg" srcset="/img/loading.gif" lazyload alt="img"></p><h3 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h3><p>代码区块使用 <strong>4 个空格</strong>或者一个<strong>制表符（Tab 键）</strong>。</p><p>实例如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//55EDFE05-5F27-458E-AFE0-7B96685C9603.jpg" srcset="/img/loading.gif" lazyload alt="img"></p><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//6DC89E5C-B41A-4938-97D8-D7D06B879F91.jpg" srcset="/img/loading.gif" lazyload alt="img"></p><p>你也可以用 <strong>```</strong> 包裹一段代码，并指定一种语言（也可以不指定）：</p><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">```<span class="javascript">javascript</span><br><span class="javascript">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;</span><br><span class="javascript">    alert(<span class="hljs-string">&#x27;RUNOOB&#x27;</span>);</span><br><span class="javascript">&#125;);</span><br><span class="javascript"></span>```<br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//88F52386-2F98-4D7E-8935-E43BECA6D868.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Markdown 区块</title>
     <link href="/2021/09/20/Markdown04/"/>
     <url>/2021/09/20/Markdown04/</url>
