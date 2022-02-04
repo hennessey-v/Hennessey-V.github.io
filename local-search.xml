@@ -61,6 +61,25 @@
   
   
   <entry>
+    <title>Markdown 区块</title>
+    <link href="/2021/09/20/Markdown04/"/>
+    <url>/2021/09/20/Markdown04/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Markdown-区块"><a href="#Markdown-区块" class="headerlink" title="Markdown 区块"></a>Markdown 区块</h1><p>Markdown 区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>符号：</p><figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta">&gt;</span> <span class="javascript">区块引用</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">菜鸟教程</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">学的不仅是技术更是梦想</span><br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//DFE1124E-BC38-4C12-B7AC-053E560D4C9C.jpg" srcset="/img/loading.gif" lazyload></p><p>另外区块是可以嵌套的，一个 <strong>&gt;</strong> 符号是最外层，两个 <strong>&gt;</strong> 符号是第一层嵌套，以此类推：</p><figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta">&gt;</span> <span class="javascript">最外层</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">&gt; 第一层嵌套</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">&gt; &gt; 第二层嵌套</span><br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//AA0A4A6A-33A7-48C7-971F-73FFC8FE85B0.jpg" srcset="/img/loading.gif" lazyload></p><h3 id="区块中使用列表"><a href="#区块中使用列表" class="headerlink" title="区块中使用列表"></a>区块中使用列表</h3><p>区块中使用列表实例如下：</p><figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta">&gt;</span> <span class="javascript">区块中使用列表</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-number">1.</span> 第一项</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-number">2.</span> 第二项</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">+ 第一项</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">+ 第二项</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">+ 第三项</span><br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//E3BF6399-6483-4C7A-8502-AE75E8D66C96.jpg" srcset="/img/loading.gif" lazyload></p><h3 id="列表中使用区块"><a href="#列表中使用区块" class="headerlink" title="列表中使用区块"></a>列表中使用区块</h3><p>如果要在列表项目内放进区块，那么就需要在 <strong>&gt;</strong> 前添加四个空格的缩进。</p><p>列表中使用区块实例如下：</p><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">* </span>第一项<br><span class="hljs-code">    &gt; 菜鸟教程</span><br><span class="hljs-code">    &gt; 学的不仅是技术更是梦想</span><br><span class="hljs-bullet">* </span>第二项<br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//1B894FB4-53AC-4E2D-BA30-F4AE4DFA8B97.jpg" srcset="/img/loading.gif" lazyload></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Markdown 列表</title>
     <link href="/2021/09/19/Markdown03/"/>
     <url>/2021/09/19/Markdown03/</url>
