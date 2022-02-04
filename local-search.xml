@@ -80,19 +80,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2022/02/03/Markdown02/"/>
-    <url>/2022/02/03/Markdown02/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Markdown 代码 (5)</title>
     <link href="/2021/09/21/Markdown05/"/>
     <url>/2021/09/21/Markdown05/</url>
@@ -129,6 +116,14 @@
     <content type="html"><![CDATA[<h1 id="Markdown-区块"><a href="#Markdown-区块" class="headerlink" title="Markdown 区块"></a>Markdown 区块</h1><p>Markdown 区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>符号：</p><figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta">&gt;</span> <span class="javascript">区块引用</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">菜鸟教程</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">学的不仅是技术更是梦想</span><br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//DFE1124E-BC38-4C12-B7AC-053E560D4C9C.jpg" srcset="/img/loading.gif" lazyload></p><p>另外区块是可以嵌套的，一个 <strong>&gt;</strong> 符号是最外层，两个 <strong>&gt;</strong> 符号是第一层嵌套，以此类推：</p><figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta">&gt;</span> <span class="javascript">最外层</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">&gt; 第一层嵌套</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">&gt; &gt; 第二层嵌套</span><br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//AA0A4A6A-33A7-48C7-971F-73FFC8FE85B0.jpg" srcset="/img/loading.gif" lazyload></p><h3 id="区块中使用列表"><a href="#区块中使用列表" class="headerlink" title="区块中使用列表"></a>区块中使用列表</h3><p>区块中使用列表实例如下：</p><figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><span class="hljs-meta">&gt;</span> <span class="javascript">区块中使用列表</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-number">1.</span> 第一项</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-number">2.</span> 第二项</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">+ 第一项</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">+ 第二项</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">+ 第三项</span><br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//E3BF6399-6483-4C7A-8502-AE75E8D66C96.jpg" srcset="/img/loading.gif" lazyload></p><h3 id="列表中使用区块"><a href="#列表中使用区块" class="headerlink" title="列表中使用区块"></a>列表中使用区块</h3><p>如果要在列表项目内放进区块，那么就需要在 <strong>&gt;</strong> 前添加四个空格的缩进。</p><p>列表中使用区块实例如下：</p><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">* </span>第一项<br><span class="hljs-code">    &gt; 菜鸟教程</span><br><span class="hljs-code">    &gt; 学的不仅是技术更是梦想</span><br><span class="hljs-bullet">* </span>第二项<br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//1B894FB4-53AC-4E2D-BA30-F4AE4DFA8B97.jpg" srcset="/img/loading.gif" lazyload></p>]]></content>
     
     
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>Markdown</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -149,6 +144,43 @@
     
     <content type="html"><![CDATA[<h1 id="Markdown-列表"><a href="#Markdown-列表" class="headerlink" title="Markdown 列表"></a>Markdown 列表</h1><p>Markdown 支持有序列表和无序列表。</p><p>无序列表使用星号(<em>****)、加号(<strong>+</strong>)或是减号(</em>*-**)作为列表标记，这些标记后面要添加一个空格，然后再填写内容：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">*</span> 第二项<br><span class="hljs-bullet">*</span> 第三项<br><br><span class="hljs-bullet">+</span> 第一项<br><span class="hljs-bullet">+</span> 第二项<br><span class="hljs-bullet">+</span> 第三项<br><br><br><span class="hljs-bullet">-</span> 第一项<br><span class="hljs-bullet">-</span> 第二项<br><span class="hljs-bullet">-</span> 第三项<br></code></pre></td></tr></table></figure><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//89446A8E-6D83-4666-AACC-980145D5F070.jpg" srcset="/img/loading.gif" lazyload alt="img"></p><p>有序列表使用数字并加上 <strong>.</strong> 号来表示，如：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项<br><span class="hljs-bullet">2.</span> 第二项<br><span class="hljs-bullet">3.</span> 第三项<br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//560384BB-2B00-41D5-ACF2-18972F7F2775.jpg" srcset="/img/loading.gif" lazyload alt="img"></p><h3 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h3><p>列表嵌套只需在子列表中的选项前面添加四个空格即可：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 第一项：<br><span class="hljs-bullet">    -</span> 第一项嵌套的第一个元素<br><span class="hljs-bullet">    -</span> 第一项嵌套的第二个元素<br><span class="hljs-bullet">2.</span> 第二项：<br><span class="hljs-bullet">    -</span> 第二项嵌套的第一个元素<br><span class="hljs-bullet">    -</span> 第二项嵌套的第二个元素<br></code></pre></td></tr></table></figure><p>显示结果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//8ED795DA-F124-4E70-BA71-57CD9CF958A4.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>]]></content>
     
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>Markdown</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Markdown</tag>
+      
+      <tag>Markdown学习笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Markdown 段落 (2)</title>
+    <link href="/2021/09/18/Markdown02/"/>
+    <url>/2021/09/18/Markdown02/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Markdown-段落"><a href="#Markdown-段落" class="headerlink" title="Markdown 段落"></a>Markdown 段落</h1><p>Markdown 段落没有特殊的格式，直接编写文字就好，<strong>段落的换行是使用两个以上空格加上回车</strong>。</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//36A89BDA-A062-4D66-A41B-0EBEE7891AB9.jpg" srcset="/img/loading.gif" lazyload></p><p>当然也可以在段落后面使用一个空行来表示重新开始一个段落。</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//3F254936-778E-417A-BEF2-467116A55D00.jpg" srcset="/img/loading.gif" lazyload></p><hr><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>Markdown 可以使用以下几种字体：</p><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-strong">*斜体文本*</span><br><span class="hljs-emphasis">_斜体文本_</span><br><span class="hljs-strong">**粗体文本**</span><br><span class="hljs-emphasis">__粗体文本__</span><br><span class="hljs-strong">***粗斜体文本**</span>*<br><span class="hljs-emphasis">___粗斜体文本__</span>_<br></code></pre></td></tr></table></figure><p>显示效果如下所示：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//md3.gif" srcset="/img/loading.gif" lazyload></p><hr><h2 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h2><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**<span class="hljs-emphasis">*</span></span><br><span class="hljs-emphasis"><span class="hljs-strong"></span></span><br><span class="hljs-emphasis"><span class="hljs-strong">*</span> <span class="hljs-emphasis">* *</span></span><br><span class="hljs-strong"></span><br><span class="hljs-strong">**</span><span class="hljs-strong">**<span class="hljs-emphasis">*</span></span><br><span class="hljs-emphasis"><span class="hljs-strong"></span></span><br><span class="hljs-emphasis"><span class="hljs-strong">- - -</span></span><br><span class="hljs-emphasis"><span class="hljs-strong"></span></span><br><span class="hljs-emphasis"><span class="hljs-strong">----------</span></span><br></code></pre></td></tr></table></figure><p>显示效果如下所示：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//3F46EAA9-DADE-48FD-99AA-DF7BEBFAA4FA.jpg" srcset="/img/loading.gif" lazyload></p><hr><h2 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h2><p>如果段落上的文字要添加删除线，只需要在文字的两端加上两个波浪线 <strong>~~</strong> 即可，实例如下：</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">RUNOOB<span class="hljs-selector-class">.COM</span><br>GOOGLE<span class="hljs-selector-class">.COM</span><br>~~BAIDU.COM~~<br></code></pre></td></tr></table></figure><p>显示效果如下所示：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//B5270A31-15D0-410B-AE1D-B9655B8F331C.jpg" srcset="/img/loading.gif" lazyload></p><hr><h2 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h2><p>下划线可以通过 HTML 的 <strong><u></strong> 标签来实现：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span>带下划线文本<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span><br></code></pre></td></tr></table></figure><p>显示效果如下所示：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//05A27273-B66D-43DE-A3DB-0D32FF024093.jpg" srcset="/img/loading.gif" lazyload></p><hr><h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><p>脚注是对文本的补充说明。</p><p>Markdown 脚注的格式如下:</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">[^要注明的文本]<br></code></pre></td></tr></table></figure><p>以下实例演示了脚注的用法：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown">创建脚注格式类似这样 [^RUNOOB]。<br><br>[<span class="hljs-symbol">^RUNOOB</span>]: <span class="hljs-link">菜鸟教程 -- 学的不仅是技术，更是梦想！！！</span><br></code></pre></td></tr></table></figure><p>演示效果如下：</p><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//md5.gif" srcset="/img/loading.gif" lazyload></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>Markdown</category>
+      
+    </categories>
     
     
     <tags>
