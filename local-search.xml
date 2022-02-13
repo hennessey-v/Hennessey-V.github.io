@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Docker 仓库管理 (6)</title>
+    <link href="/2022/02/13/Docker06/"/>
+    <url>/2022/02/13/Docker06/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Docker-仓库管理"><a href="#Docker-仓库管理" class="headerlink" title="Docker 仓库管理"></a>Docker 仓库管理</h1><p>仓库（Repository）是集中存放镜像的地方。以下介绍一下 <a href="https://hub.docker.com/">Docker Hub</a>。当然不止 docker hub，只是远程的服务商不一样，操作都是一样的。</p><h2 id="Docker-Hub"><a href="#Docker-Hub" class="headerlink" title="Docker Hub"></a>Docker Hub</h2><p>目前 Docker 官方维护了一个公共仓库 <a href="https://hub.docker.com/">Docker Hub</a>。</p><p>大部分需求都可以通过在 Docker Hub 中直接下载镜像来实现。</p><h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>在 <a href="https://hub.docker.com/">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h3 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h3><p>登录需要输入用户名和密码，登录成功后，我们就可以从 docker hub 上拉取自己账号下的全部镜像。</p><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>docker login<br></code></pre></td></tr></table></figure><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//5974B2AE-945F-4DD0-A7C8-9D9B01BDAF62.jpg" srcset="/img/loading.gif" lazyload></p><p><strong>退出</strong></p><p>退出 docker hub 可以使用以下命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> docker <span class="hljs-built_in">logout</span></span><br></code></pre></td></tr></table></figure><p>拉取镜像</p><p>你可以通过 docker search 命令来查找官方仓库中的镜像，并利用 docker pull 命令来将它下载到本地。</p><p>以 ubuntu 为关键词进行搜索：</p><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>docker search ubuntu<br></code></pre></td></tr></table></figure><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-search22.png" srcset="/img/loading.gif" lazyload></p><p>使用 docker pull 将官方 ubuntu 镜像下载到本地：</p><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>docker pull ubuntu <br></code></pre></td></tr></table></figure><p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-pull22.png" srcset="/img/loading.gif" lazyload></p><h3 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h3><p>用户登录后，可以通过 docker push 命令将自己的镜像推送到 Docker Hub。</p><p>以下命令中的 username 请替换为你的 Docker 账号用户名。</p><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">$ docker <span class="hljs-keyword">tag</span> <span class="hljs-title">ubuntu</span>:<span class="hljs-number">18.04</span> username/ubuntu:<span class="hljs-number">18.04</span><br>$ docker image ls<br><br>REPOSITORY      <span class="hljs-keyword">TAG</span>        <span class="hljs-title">IMAGE</span> ID            CREATED           ...  <br>ubuntu          <span class="hljs-number">18.04</span>      <span class="hljs-number">275</span>d79972a86        <span class="hljs-number">6</span> days ago        ...  <br>username/ubuntu <span class="hljs-number">18.04</span>      <span class="hljs-number">275</span>d79972a86        <span class="hljs-number">6</span> days ago        ...  <br>$ docker push username/ubuntu:<span class="hljs-number">18.04</span><br>$ docker search username/ubuntu<br><br>NAME             DESCRIPTION       STARS         OFFICIAL    AUTOMATED<br>username/ubuntu<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>Docker</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Docker学习笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Docker 容器连接 (5)</title>
     <link href="/2022/02/05/Docker05/"/>
     <url>/2022/02/05/Docker05/</url>
