@@ -1,0 +1,825 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hennessey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Docker 容器连接前面我们实现了通过网络端口来访问运行在 docker 容器内的服务。 容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 -P 或 -p 参数来指定端口映射。 下面我们来实现通过端口连接到一个 docker 容器。  网络端口映射我们创建了一个 python 应用的容器。 12runoob@runoob:~$ docker run -d -P training&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 容器连接 (5)">
+<meta property="og:url" content="http://hennessey-v.github.io/2022/02/05/Docker05/index.html">
+<meta property="og:site_name" content="HennesseyBlog">
+<meta property="og:description" content="Docker 容器连接前面我们实现了通过网络端口来访问运行在 docker 容器内的服务。 容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 -P 或 -p 参数来指定端口映射。 下面我们来实现通过端口连接到一个 docker 容器。  网络端口映射我们创建了一个 python 应用的容器。 12runoob@runoob:~$ docker run -d -P training&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net.png">
+<meta property="article:published_time" content="2022-02-05T09:57:45.000Z">
+<meta property="article:modified_time" content="2022-02-05T07:30:14.657Z">
+<meta property="article:author" content="Hennessey">
+<meta property="article:tag" content="Docker学习笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Docker 容器连接 (5) - HennesseyBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/stytle.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"hennessey-v.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>HennesseyBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                文章
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    <i class="iconfont icon-archive-fill"></i>
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    <i class="iconfont icon-tags-fill"></i>
+                    标签
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    <i class="iconfont icon-category-fill"></i>
+                    分类
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-th-large"></i>
+                页面
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://pan.hennessey.xyz/">
+                    
+                    Onedrive网盘
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/links/">
+                    
+                    友链
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/">
+                    
+                    关于
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Docker 容器连接 (5)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-05 09:57" pubdate>
+          2022年2月5日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Docker 容器连接 (5)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Docker-容器连接"><a href="#Docker-容器连接" class="headerlink" title="Docker 容器连接"></a>Docker 容器连接</h1><p>前面我们实现了通过网络端口来访问运行在 docker 容器内的服务。</p>
+<p>容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 <strong>-P</strong> 或 <strong>-p</strong> 参数来指定端口映射。</p>
+<p>下面我们来实现通过端口连接到一个 docker 容器。</p>
+<hr>
+<h2 id="网络端口映射"><a href="#网络端口映射" class="headerlink" title="网络端口映射"></a>网络端口映射</h2><p>我们创建了一个 python 应用的容器。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir">runoob<span class="hljs-variable">@runoob</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span>docker run -d -P training/webapp python app.py<br>fce072cc88cee71b1cdceb57c2821d054a4a59f67da6b416fceb5593f059fc6d<br></code></pre></td></tr></table></figure>
+
+<p>另外，我们可以指定容器绑定的网络地址，比如绑定 127.0.0.1。</p>
+<p>我们使用 <strong>-P</strong> 绑定端口号，使用 <strong>docker ps</strong> 可以看到容器端口 5000 绑定主机端口 32768。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elixir">runoob<span class="hljs-variable">@runoob</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span>docker ps<br>CONTAINER ID    IMAGE               COMMAND            ...           PORTS                     NAMES<br>fce072cc88ce    training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>    ...     0.0.0.0<span class="hljs-symbol">:</span><span class="hljs-number">32768</span>-&gt;<span class="hljs-number">5000</span>/tcp   grave_hopper<br></code></pre></td></tr></table></figure>
+
+<p>我们也可以使用 <strong>-p</strong> 标识来指定容器端口绑定到主机端口。</p>
+<p>两种方式的区别是:</p>
+<ul>
+<li><strong>-P :<strong>是容器内部端口</strong>随机</strong>映射到主机的端口。</li>
+<li><strong>-p :</strong> 是容器内部端口绑定到<strong>指定</strong>的主机端口。</li>
+</ul>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs elixir">runoob<span class="hljs-variable">@runoob</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span>docker run -d -p <span class="hljs-number">5000</span><span class="hljs-symbol">:</span><span class="hljs-number">5000</span> training/webapp python app.py<br><span class="hljs-number">33</span>e4523d30aaf0258915c368e66e03b49535de0ef20317d3f639d40222ba6bc0<br>runoob<span class="hljs-variable">@runoob</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span>docker ps<br>CONTAINER ID        IMAGE               COMMAND           ...           PORTS                     NAMES<br><span class="hljs-number">33</span>e4523d30aa        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...   0.0.0.0<span class="hljs-symbol">:</span><span class="hljs-number">5000</span>-&gt;<span class="hljs-number">5000</span>/tcp    berserk_bartik<br>fce072cc88ce        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...   0.0.0.0<span class="hljs-symbol">:</span><span class="hljs-number">32768</span>-&gt;<span class="hljs-number">5000</span>/tcp   grave_hopper<br></code></pre></td></tr></table></figure>
+
+<p>另外，我们可以指定容器绑定的网络地址，比如绑定 127.0.0.1。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">runoob</span>@runoob:~$ docker run -d -p <span class="hljs-number">127.0.0.1:5001</span>:<span class="hljs-number">5000</span> training/webapp python app.py<br><span class="hljs-attribute">95c6ceef88ca3e71eaf303c2833fd6701d8d1b2572b5613b5a932dfdfe8a857c</span><br><span class="hljs-attribute">runoob</span>@runoob:~$ docker ps<br><span class="hljs-attribute">CONTAINER</span> ID        IMAGE               COMMAND           ...     PORTS                                NAMES<br><span class="hljs-attribute">95c6ceef88ca</span>        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...  <span class="hljs-number">5000</span>/tcp, <span class="hljs-number">127.0.0.1:5001</span>-&gt;<span class="hljs-number">5000</span>/tcp   adoring_stonebraker<br><span class="hljs-attribute">33e4523d30aa</span>        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...  <span class="hljs-number">0.0.0.0:5000</span>-&gt;<span class="hljs-number">5000</span>/tcp               berserk_bartik<br><span class="hljs-attribute">fce072cc88ce</span>        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...    <span class="hljs-number">0.0.0.0:32768</span>-&gt;<span class="hljs-number">5000</span>/tcp              grave_hopper<br></code></pre></td></tr></table></figure>
+
+<p>这样我们就可以通过访问 127.0.0.1:5001 来访问容器的 5000 端口。</p>
+<p>上面的例子中，默认都是绑定 tcp 端口，如果要绑定 UDP 端口，可以在端口后面加上 <strong>/udp</strong>。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">runoob</span>@runoob:~$ docker run -d -p <span class="hljs-number">127.0.0.1:5000</span>:<span class="hljs-number">5000</span>/udp training/webapp python app.py<br><span class="hljs-attribute">6779686f06f6204579c1d655dd8b2b31e8e809b245a97b2d3a8e35abe9dcd22a</span><br><span class="hljs-attribute">runoob</span>@runoob:~$ docker ps<br><span class="hljs-attribute">CONTAINER</span> ID        IMAGE               COMMAND           ...   PORTS                                NAMES<br><span class="hljs-attribute">6779686f06f6</span>        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...   <span class="hljs-number">5000</span>/tcp, <span class="hljs-number">127.0.0.1:5000</span>-&gt;<span class="hljs-number">5000</span>/udp   drunk_visvesvaraya<br><span class="hljs-attribute">95c6ceef88ca</span>        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...    <span class="hljs-number">5000</span>/tcp, <span class="hljs-number">127.0.0.1:5001</span>-&gt;<span class="hljs-number">5000</span>/tcp   adoring_stonebraker<br><span class="hljs-attribute">33e4523d30aa</span>        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...     <span class="hljs-number">0.0.0.0:5000</span>-&gt;<span class="hljs-number">5000</span>/tcp               berserk_bartik<br><span class="hljs-attribute">fce072cc88ce</span>        training/webapp     <span class="hljs-string">&quot;python app.py&quot;</span>   ...    <span class="hljs-number">0.0.0.0:32768</span>-&gt;<span class="hljs-number">5000</span>/tcp              grave_hopper<br></code></pre></td></tr></table></figure>
+
+<p><strong>docker port</strong> 命令可以让我们快捷地查看端口的绑定情况。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">runoob@runoob:~$ docker port adoring_stonebraker <span class="hljs-number">5000</span><br><span class="hljs-number">127.0.0.1:5001</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Docker-容器互联"><a href="#Docker-容器互联" class="headerlink" title="Docker 容器互联"></a>Docker 容器互联</h2><p>端口映射并不是唯一把 docker 连接到另一个容器的方法。</p>
+<p>docker 有一个连接系统允许将多个容器连接在一起，共享连接信息。</p>
+<p>docker 连接会创建一个父子关系，其中父容器可以看到子容器的信息。</p>
+<hr>
+<h3 id="容器命名"><a href="#容器命名" class="headerlink" title="容器命名"></a>容器命名</h3><p>当我们创建一个容器的时候，docker 会自动对它进行命名。另外，我们也可以使用 <strong>–name</strong> 标识来命名容器，例如：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir">runoob<span class="hljs-variable">@runoob</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span> docker run -d -P --name runoob training/webapp python app.py<br><span class="hljs-number">43780</span>a6eabaaf14e590b6e849235c75f3012995403f97749775e38436db9a441<br></code></pre></td></tr></table></figure>
+
+<p>我们可以使用 <strong>docker ps</strong> 命令来查看容器名称。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elixir">runoob<span class="hljs-variable">@runoob</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span>docker ps -l<br>CONTAINER ID     IMAGE            COMMAND           ...    PORTS                     NAMES<br><span class="hljs-number">43780</span>a6eabaa     training/webapp   <span class="hljs-string">&quot;python app.py&quot;</span>  ...     0.0.0.0<span class="hljs-symbol">:</span><span class="hljs-number">32769</span>-&gt;<span class="hljs-number">5000</span>/tcp   runoob<br></code></pre></td></tr></table></figure>
+
+<h3 id="新建网络"><a href="#新建网络" class="headerlink" title="新建网络"></a>新建网络</h3><p>下面先创建一个新的 Docker 网络。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> docker network create <span class="hljs-literal">-d</span> bridge <span class="hljs-built_in">test-net</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net.png" srcset="/img/loading.gif" lazyload></p>
+<p>参数说明：</p>
+<p><strong>-d</strong>：参数指定 Docker 网络类型，有 bridge、overlay。</p>
+<p>其中 overlay 网络类型用于 Swarm mode，在本小节中你可以忽略它。</p>
+<h3 id="连接容器"><a href="#连接容器" class="headerlink" title="连接容器"></a>连接容器</h3><p>运行一个容器并连接到新建的 test-net 网络:</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">$ docker run -itd <span class="hljs-params">--name</span> test1 <span class="hljs-params">--network</span> test-net ubuntu <span class="hljs-string">/bin/bash</span><br></code></pre></td></tr></table></figure>
+
+<p>打开新的终端，再运行一个容器并加入到 test-net 网络:</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">$ docker run -itd <span class="hljs-params">--name</span> test2 <span class="hljs-params">--network</span> test-net ubuntu <span class="hljs-string">/bin/bash</span><br></code></pre></td></tr></table></figure>
+
+<p>点击图片查看大图：</p>
+<p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net2.png" srcset="/img/loading.gif" lazyload></p>
+<p>下面通过 ping 来证明 test1 容器和 test2 容器建立了互联关系。</p>
+<p>如果 test1、test2 容器内中无 ping 命令，则在容器内执行以下命令安装 ping（即学即用：可以在一个容器里安装好，提交容器到镜像，在以新的镜像重新运行以上俩个容器）。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">apt-<span class="hljs-keyword">get</span> <span class="hljs-keyword">update</span><br>apt install iputils-ping<br></code></pre></td></tr></table></figure>
+
+<p>在 test1 容器输入以下命令：</p>
+<p>点击图片查看大图：</p>
+<p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net3.png" srcset="/img/loading.gif" lazyload></p>
+<p>同理在 test2 容器也会成功连接到:</p>
+<p>点击图片查看大图：</p>
+<p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net4.png" srcset="/img/loading.gif" lazyload></p>
+<p>这样，test1 容器和 test2 容器建立了互联关系。</p>
+<p>如果你有多个容器之间需要互相连接，推荐使用 Docker Compose，后面会介绍。</p>
+<hr>
+<h2 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p>我们可以在宿主机的 /etc/docker/daemon.json 文件中增加以下内容来设置全部容器的 DNS：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;dns&quot;</span> : [<br>    <span class="hljs-string">&quot;114.114.114.114&quot;</span>,<br>    <span class="hljs-string">&quot;8.8.8.8&quot;</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>设置后，启动容器的 DNS 会自动配置为 114.114.114.114 和 8.8.8.8。</p>
+<p>配置完，需要重启 docker 才能生效。</p>
+<p>查看容器的 DNS 是否生效可以使用以下命令，它会输出容器的 DNS 信息：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">$ docker <span class="hljs-keyword">run</span> -it --<span class="hljs-keyword">rm</span>  ubuntu  <span class="hljs-keyword">cat</span> etc/resolv.<span class="hljs-keyword">conf</span><br></code></pre></td></tr></table></figure>
+
+<p>点击图片查看大图：</p>
+<p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net5.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>手动指定容器的配置</strong></p>
+<p>如果只想在指定的容器设置 DNS，则可以使用以下命令：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">$ docker <span class="hljs-builtin-name">run</span> -it --rm -h host_ubuntu  <span class="hljs-attribute">--dns</span>=114.114.114.114 <span class="hljs-attribute">--dns-search</span>=test.com ubuntu<br></code></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<p><strong>–rm</strong>：容器退出时自动清理容器内部的文件系统。</p>
+<p><strong>-h HOSTNAME 或者 –hostname=HOSTNAME</strong>： 设定容器的主机名，它会被写到容器内的 /etc/hostname 和 /etc/hosts。</p>
+<p><strong>–dns=IP_ADDRESS</strong>： 添加 DNS 服务器到容器的 /etc/resolv.conf 中，让容器用这个服务器来解析所有不在 /etc/hosts 中的主机名。</p>
+<p><strong>–dns-search=DOMAIN</strong>： 设定容器的搜索域，当设定搜索域为 .example.com 时，在搜索一个名为 host 的主机时，DNS 不仅搜索 host，还会搜索 host.example.com。</p>
+<p>点击图片查看大图：</p>
+<p><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net6.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果在容器启动时没有指定 <strong>–dns</strong> 和 <strong>–dns-search</strong>，Docker 会默认用宿主主机上的 /etc/resolv.conf 来配置容器的 DNS。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Docker/" class="category-chain-item">Docker</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">#Docker学习笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Docker 容器连接 (5)</div>
+      <div>http://hennessey-v.github.io/2022/02/05/Docker05/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Hennessey</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月5日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/13/Docker06/" title="Docker 仓库管理 (6)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker 仓库管理 (6)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/04/Docker04/" title="Docker 镜像使用 (4)">
+                        <span class="hidden-mobile">Docker 镜像使用 (4)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments">
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://hexo-waline-xi.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick","mail"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo","https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis/alus"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"说点什么","avatar":"mp","avatarCDN":"https://seccdn.libravatar.org/avatar/","avatarForce":false,"highlight":true},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div class="github-badge"> <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hexo</span> <span class="badge-subject">Theme</span><span class="badge-value bg-brightgreen">Fluid</span> <span class="badge-subject">Hosted</span><span class="badge-value bg-blue">GitHub&Vercel</span> </div> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div>
+
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
