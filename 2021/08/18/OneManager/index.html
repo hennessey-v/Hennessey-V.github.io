@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>OneManager高级设置 | Donyu</title><meta name="author" content="Hennessey"><meta name="copyright" content="Hennessey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="OneManager是什么这是一个利用微软onedrive api将onedrive目录映射成一个云盘的程序，类似的程序有很多，比如OneIndex、Pyone、OnePoint等等。这个程序的特点是支持多种onedrive类型，可以部署在vps，heroku，以及腾讯云scf上。项目地址 我的Demo 部署教程参考项目readme说明，网上一些博客也有不少教程，这不是本文的重点，本文主要讲的是部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OneManager高级设置">
+<meta property="og:url" content="http://hennessey-v.github.io/2021/08/18/OneManager/index.html">
+<meta property="og:site_name" content="Donyu">
+<meta property="og:description" content="OneManager是什么这是一个利用微软onedrive api将onedrive目录映射成一个云盘的程序，类似的程序有很多，比如OneIndex、Pyone、OnePoint等等。这个程序的特点是支持多种onedrive类型，可以部署在vps，heroku，以及腾讯云scf上。项目地址 我的Demo 部署教程参考项目readme说明，网上一些博客也有不少教程，这不是本文的重点，本文主要讲的是部">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/Blog-img/20220101//GjMcnK.jpg">
+<meta property="article:published_time" content="2021-08-18T02:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-01T09:05:56.700Z">
+<meta property="article:author" content="Hennessey">
+<meta property="article:tag" content="Onedrive">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/Blog-img/20220101//GjMcnK.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://hennessey-v.github.io/2021/08/18/OneManager/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;88008f8fa0c948b58f11c51c87aadd80&quot;}"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":100,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":300,"languages":{"author":"作者: Hennessey","link":"链接: ","source":"来源: Donyu","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OneManager高级设置',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-01 17:05:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.staticaly.com/gh/hennessey-v/pic@master/icon/author.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/Blog-img/20220101//GjMcnK.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Donyu"><span class="site-name">Donyu</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OneManager高级设置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-18T02:00:00.000Z" title="发表于 2021-08-18 10:00:00">2021-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-01T09:05:56.700Z" title="更新于 2023-03-01 17:05:56">2023-03-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OneManager高级设置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="OneManager是什么"><a href="#OneManager是什么" class="headerlink" title="OneManager是什么"></a>OneManager是什么</h2><p>这是一个利用微软onedrive api将onedrive目录映射成一个云盘的程序，类似的程序有很多，比如OneIndex、Pyone、OnePoint等等。这个程序的特点是支持多种onedrive类型，可以部署在vps，heroku，以及腾讯云scf上。<br><a target="_blank" rel="noopener" href="https://github.com/qkqpttgf/OneManager-php">项目地址</a> <a target="_blank" rel="noopener" href="https://service-ps9dmx7o-1304376991.hk.apigw.tencentcs.com/release/Cloud/CloudA/">我的Demo</a></p>
+<h2 id="部署教程"><a href="#部署教程" class="headerlink" title="部署教程"></a>部署教程</h2><p>参考项目readme说明，网上一些博客也有不少教程，这不是本文的重点，本文主要讲的是部署好后的设置问题。<br>部署成功后在设置-&gt;首页里添加相应的盘，可以添加多个盘，同一个盘也可以添加多次。</p>
+<h2 id="平台变量"><a href="#平台变量" class="headerlink" title="平台变量"></a>平台变量</h2><p>登录后，在<code>管理</code>&gt;<code>设置</code>里有一些自定义设置，有些人不清楚这些设置是干嘛的，这可以理解，毕竟项目的说明写的太简单了。<br>注意本文的操作都是针对程序默认主题来说的，其他主题由于是第三方人员开发，不保证所有功能都能正常使用。</p>
+<h3 id="adminloginpage"><a href="#adminloginpage" class="headerlink" title="adminloginpage"></a>adminloginpage</h3><p>自定义登录地址，设置后就会隐藏登录按钮(有些主题本来就没有登录按钮)，登录时需要手动在网盘地址后加上<code>?你设置的值</code>进行登录。<br>比如设置为<code>abc</code>，那么你只能通过<code>http://xxx.com/xxx?abc</code>地址来登录 。所以一旦设置就要记住你设置的值，不然连你自己也没法知道登录地址那就麻烦了。<br>这个设置是为了防止别人通过默认的登录界面尝试登录你的网盘，设置本项后只要猜不到登录界面，即使别人知道登录密码也没用，多一道防护墙，让网盘更安全。</p>
+<h3 id="autoJumpFirstDisk"><a href="#autoJumpFirstDisk" class="headerlink" title="autoJumpFirstDisk"></a>autoJumpFirstDisk</h3><p>设置点击网盘标题时跳转到绑定的第一个盘还是当前绑定的网盘根目录。</p>
+<h3 id="background"><a href="#background" class="headerlink" title="background"></a>background</h3><p>自定义背景图片，填入一个图片的url地址，因为图片加载通常需要更多时间，为了速度考虑不建议放入大体积图片。</p>
+<h3 id="backgroundm"><a href="#backgroundm" class="headerlink" title="backgroundm"></a>backgroundm</h3><p>手机端显示的背景图片地址。</p>
+<h3 id="customCss"><a href="#customCss" class="headerlink" title="customCss"></a>customCss</h3><p>设置自定义css的地方，这里设置的css会作用于网盘所有页面。<br>比如我想隐藏语言选项框：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"><span class="selector-class">.changelanguage</span>&#123;<span class="attribute">display</span>:none&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同时隐藏复制下载链接按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"><span class="selector-class">.file</span> <span class="selector-tag">button</span>&#123;<span class="attribute">display</span>:none&#125;<span class="selector-class">.changelanguage</span>&#123;<span class="attribute">display</span>:none&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="customScript"><a href="#customScript" class="headerlink" title="customScript"></a>customScript</h3><p>设置自定义js，会作用于所有页面。<br>比如设置http重定向到https：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> targetProtocol = <span class="string">&quot;https:&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">protocol</span> != targetProtocol)</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = targetProtocol + <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span>.<span class="title function_">substring</span>(<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">protocol</span>.<span class="property">length</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="customTheme"><a href="#customTheme" class="headerlink" title="customTheme"></a>customTheme</h3><p>通过url的方式引用html主题，比如你可以通过设置下面的地址来使用我的主题。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://cdn.jsdelivr.net/gh/kizx/onemoe-theme/onemoe.html</span><br></pre></td></tr></table></figure>
+
+<h3 id="disableChangeTheme"><a href="#disableChangeTheme" class="headerlink" title="disableChangeTheme"></a>disableChangeTheme</h3><p>设置为<code>1</code>后游客浏览时将不显示右下角的主题切换功能。</p>
+<h3 id="disableShowThumb"><a href="#disableShowThumb" class="headerlink" title="disableShowThumb"></a>disableShowThumb</h3><p>设置为<code>1</code>后将不显示缩略图的按钮和功能，对于云函数用户来说，建议设为<code>1</code>来关闭该功能，因为该功能可能点一下就是一分钱。</p>
+<h3 id="hideFunctionalityFile"><a href="#hideFunctionalityFile" class="headerlink" title="hideFunctionalityFile"></a>hideFunctionalityFile</h3><p>设置为<code>1</code>后，游客浏览网盘时就会看不到read.md，head.md，head.ofm，foo.omf这些文件，这些文件是干嘛的后面会说。</p>
+<h3 id="passfile"><a href="#passfile" class="headerlink" title="passfile"></a>passfile</h3><p>设置密码文件名，比如这里设置为password.txt，那么在某一个目录下新建一个password.txt文件，其中写入密码，这样任何人在浏览这个网盘目录时都需要输入相应密码后才能访问。</p>
+<h3 id="sitename"><a href="#sitename" class="headerlink" title="sitename"></a>sitename</h3><p>设置网站名称。</p>
+<h3 id="theme"><a href="#theme" class="headerlink" title="theme"></a>theme</h3><p>切换主题。</p>
+<h3 id="timezone"><a href="#timezone" class="headerlink" title="timezone"></a>timezone</h3><p>设置时区，国内可设置为8。</p>
+<h2 id="每个盘独立变量"><a href="#每个盘独立变量" class="headerlink" title="每个盘独立变量"></a>每个盘独立变量</h2><h3 id="diskname"><a href="#diskname" class="headerlink" title="diskname"></a>diskname</h3><p>多盘在网盘界面显示的名称。</p>
+<h3 id="domain-path"><a href="#domain-path" class="headerlink" title="domain_path"></a>domain_path</h3><p>当绑定多个域名时，可以使不同域名打开时访问不同目录。当然如果你只有一个域名也可以用，通过这种方式可以使当前域名访问一个指定子目录，和后面的public_path起到一样的作用。<br>下面是两个域名的设置方法，中间用<code>|</code>隔开，如果有多个域名只设置一个域名时，未设置的域名好像也会只访问该目录，要访问根目录dirname设置为<code>/</code>。</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">domain1.com:/dir1name|domain2.com:/dir2name</span><br></pre></td></tr></table></figure>
+
+<h3 id="downloadencrypt"><a href="#downloadencrypt" class="headerlink" title="downloadencrypt"></a>downloadencrypt</h3><p>设置为<code>1</code>时启用该功能，这样在设置了密码的目录下的文件虽然无法在网页端浏览，但可以通过具体的文件链接进行下载。</p>
+<h3 id="guestup-path"><a href="#guestup-path" class="headerlink" title="guestup_path"></a>guestup_path</h3><p>设置图床路径或者叫游客上传路径，设置后游客只能看到上传按钮看不到目录下的文件。</p>
+<h3 id="public-path"><a href="#public-path" class="headerlink" title="public_path"></a>public_path</h3><p>设置该盘的显示的根目录，默认为<code>/</code>，换个说法就是可以显示指定的文件夹，默认显示全部。<br>比如我们只想将网盘下的public文件夹内容作为网盘，可以设置为<code>/public/</code>。<br>有了这个功能，即使只有一个onedrive账号，我们也可以通过重复绑定同一个账号来生成多盘，然后每个盘的public_path设置为不同的路径，这样可以将一个盘的功能分开。</p>
+<hr>
+<p>还有一种特殊情况是我既想让游客上传文件，又想让游客看见上传后的文件目录，目前就只能通过这种方法将该目录设置到两个盘，一个盘作上传，一个盘作目录展示。</p>
+<h2 id="进阶设置"><a href="#进阶设置" class="headerlink" title="进阶设置"></a>进阶设置</h2><h3 id="设置网站ico图标"><a href="#设置网站ico图标" class="headerlink" title="设置网站ico图标"></a>设置网站ico图标</h3><p>将favicon.ico图片放在网盘根目录下，<del>如果你设置了多盘的的话，则需要在每个盘的根目录下都放置一个favicon.ico文件</del>，新版的html主题只需要在绑定的第一个盘下面设置就行了。<br>当然你也可以在customCss或customScript中进行全局设置：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cloud.tencent.com/favicon.ico&quot;</span> <span class="attr">type</span>=<span class="string">&quot;image/x-icon&quot;</span>&gt;</span></span><br><span class="line">这里我使用了腾讯云的网站图标，你应该改为自己的favicon.ico图片地址。</span><br></pre></td></tr></table></figure>
+
+<h3 id="刷新自动切换背景图片"><a href="#刷新自动切换背景图片" class="headerlink" title="刷新自动切换背景图片"></a>刷新自动切换背景图片</h3><p>这个是通过设置特殊的图片api来实现的，这些api每次刷新都会返回一张不同的图片，将后台background设置为这些api的url即可。<br>网上类似的api有很多，以下是群友收集的免费图片api：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">https://api.ixiaowai.cn/api/api.php (二次元动漫)</span><br><span class="line">http://www.dmoe.cc/random.php（二次元随机图）</span><br><span class="line">https://api.ixiaowai.cn/mcapi/mcapi.php （menhera酱）</span><br><span class="line">https://api.ixiaowai.cn/gqapi/gqapi.php （风景）</span><br><span class="line">https://acg.yanwz.cn/wallpaper/api.php（二次元随机图）</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用index-html设置自定义页面"><a href="#利用index-html设置自定义页面" class="headerlink" title="利用index.html设置自定义页面"></a>利用index.html设置自定义页面</h3><p>如果一个目录下有名为index.html的文件，则直接显示该文件，可以利用这个功能设置一个自定义页面或者用于隐藏一个特定页面，相当于部署了一个静态页面。</p>
+<h3 id="设置顶部和底部说明文字"><a href="#设置顶部和底部说明文字" class="headerlink" title="设置顶部和底部说明文字"></a>设置顶部和底部说明文字</h3><p>在需要展示顶部说明的目录下新建一个<code>head.md</code>文件，在文件里写入说明内容即可，这是一个markdown文件，可以使用markdown语言进行书写。<br>底部说明说明文字对应的是<code>readme.md</code>文件，规则与顶部文字一样。</p>
+<h3 id="利用head-omf设置一言"><a href="#利用head-omf设置一言" class="headerlink" title="利用head.omf设置一言"></a>利用head.omf设置一言</h3><p>head.omf作用和head.md一样，区别是他不支持markdonw语言，但是支持html语言，可以写入html、css、js内容。<br>在想展示一言的目录新建<code>head.omf</code>文件，然后写入以下内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;hitokoto&quot;</span>&gt;</span>:D 获取中...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">fetch</span>(<span class="string">&#x27;https://v1.hitokoto.cn&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">json</span>())</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">const</span> hitokoto = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;hitokoto&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">            hitokoto.<span class="property">innerText</span> = data.<span class="property">hitokoto</span></span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">catch</span>(<span class="variable language_">console</span>.<span class="property">error</span>)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上是使用了<a target="_blank" rel="noopener" href="https://developer.hitokoto.cn/">https://developer.hitokoto.cn/</a> 的一言接口，你也可以尝试更换其他接口或者自建接口。</p>
+<h3 id="利用foot-omf设置Valine评论"><a href="#利用foot-omf设置Valine评论" class="headerlink" title="利用foot.omf设置Valine评论"></a>利用foot.omf设置Valine评论</h3><p>使用Valine需要先注册<a target="_blank" rel="noopener" href="https://www.leancloud.cn/">LeanCloud</a>并实名认证，然后新建应用获取AppID和AppKey。<br>具体过程参考：<a target="_blank" rel="noopener" href="https://valine.js.org/quickstart.html">https://valine.js.org/quickstart.html</a><br>然后新建<code>foot.omf</code>，写入以下内容（注意填入替换自己的AppID和AppKey）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&#x27;//unpkg.com/valine/dist/Valine.min.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;vcomments&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">new</span> <span class="title class_">Valine</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">el</span>: <span class="string">&#x27;#vcomments&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">appId</span>: <span class="string">&#x27;你获取的AppID&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">appKey</span>: <span class="string">&#x27;你获取的AppKey&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>ps: 上面的js用的是unpkg的cdn，国内速度完全不行，建议改用jsdelivr的cdn</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&#x27;//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>如果对样式不满意，建议直接在omf文件写css美化。</li>
+</ul>
+<h3 id="设置动态背景"><a href="#设置动态背景" class="headerlink" title="设置动态背景"></a>设置动态背景</h3><p>这里的动态背景指我们经常在一些网页见到的那种下雪、粒子线条、彩条等动态背景，一般是通过js实现的，可以自己在网上找找现成的教程，js我不会，这里只展示一种我找到的动态彩条背景。<br>我将下面的代码写在了foot.omf中，可以访问 <a target="_blank" rel="noopener" href="https://pan.2bboy.com/home/test/colored-ribbon/">https://pan.2bboy.com/home/test/colored-ribbon/</a> 查看其效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">size</span>=<span class="string">&quot;90&quot;</span> <span class="attr">alpha</span>=<span class="string">&quot;0.5&quot;</span> <span class="attr">zIndex</span>=<span class="string">&quot;0&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://pan.2bboy.com/ppx/test/ribbon.js&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中最重要的是 ribbon.js 这个js文件，我将他放在网盘目录下，你应该下载该文件放在自己的云空间里，然后替换引用的地址。<br>如果将代码放在omf文件里则只能在当前目录有效果，设置在后台的customScript中就可以全局生效了。</p>
+<p>当然只要你懂点js，利用omf文件可以玩出很多东西，比我这里有一些示例：<a target="_blank" rel="noopener" href="https://pan.2bboy.com/home/test/">https://pan.2bboy.com/home/test/</a></p>
+<h3 id="美化自定义登录页面"><a href="#美化自定义登录页面" class="headerlink" title="美化自定义登录页面"></a>美化自定义登录页面</h3><p>修改common.php相应地方，添加style和br</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$html</span> .= <span class="string">&#x27;</span></span><br><span class="line"><span class="string">    &lt;style&gt;body&#123;background-image:linear-gradient(60deg,#343b44 0%,#485563 100%);background-attachment:fixed;color:#343b44&#125;body&gt;div&#123;position:absolute;text-align:center;background-color:rgba(221,221,221,.5);border-radius:20px;width:75vw;max-width:500px;height:350px;margin:auto;top:25%;bottom:50%;left:0;right:0&#125;body&gt;div:hover&#123;box-shadow:3px 3px 6px 3px rgba(0,0,0,.3)&#125;h4&#123;font-size:40px&#125;input&#123;font-size:20px;margin:2%auto;border:#343b44 2px solid;border-radius:10px;padding:10px;height:50px;text-align:center&#125;input:last-of-type&#123;color:#343b44;height:50px;width:80px;font-weight:800&#125;input:hover:last-of-type&#123;cursor:pointer;color:#ddd;background-color:#485563&#125;&lt;/style&gt;</span></span><br><span class="line"><span class="string">    &lt;body&gt;</span></span><br><span class="line"><span class="string">    &lt;div&gt;</span></span><br><span class="line"><span class="string">      &lt;center&gt;&lt;h4&gt;&#x27;</span>.<span class="title function_ invoke__">getconstStr</span>(<span class="string">&#x27;InputPassword&#x27;</span>).<span class="string">&#x27;&lt;/h4&gt;</span></span><br><span class="line"><span class="string">      &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;</span></span><br><span class="line"><span class="string">          &lt;div&gt;</span></span><br><span class="line"><span class="string">            &lt;input name=&quot;password1&quot; type=&quot;password&quot;/&gt;</span></span><br><span class="line"><span class="string">            &lt;/br&gt;</span></span><br><span class="line"><span class="string">            &lt;input type=&quot;submit&quot; value=&quot;&#x27;</span>.<span class="title function_ invoke__">getconstStr</span>(<span class="string">&#x27;Login&#x27;</span>).<span class="string">&#x27;&quot;&gt;</span></span><br><span class="line"><span class="string">          &lt;/div&gt;</span></span><br><span class="line"><span class="string">      &lt;/form&gt;</span></span><br><span class="line"><span class="string">      &lt;/center&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://pan.2bboy.com/img/2020/05/0530183122.png"><img src="https://pan.2bboy.com/img/2020/05/0530183122.png" alt="img"></a></p>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><ul>
+<li>游客上传文件时只能单个上传，不能批量上传。</li>
+<li>由于scf的缓存系统，在scf上进行某项改动后有时候不会立马生效，或者刷新后时而生效时而不生效，只要多等一会儿，等旧缓存自己失效就好了。</li>
+<li>php格式的主题为旧版主题，许多功能不支持，html格式的主题为新版主题，不同主题的作者更新频率和支持功能都可能不同，功能测试请以最新版本的默认主题为准。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Onedrive云盘程序——OneManager小白设置指南<br><a target="_blank" rel="noopener" href="https://www.2bboy.com/archives/176.html/comment-page-1">https://www.2bboy.com/archives/176.html/comment-page-1</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://hennessey-v.github.io">Hennessey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://hennessey-v.github.io/2021/08/18/OneManager/">http://hennessey-v.github.io/2021/08/18/OneManager/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://hennessey-v.github.io" target="_blank">Donyu</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Onedrive/">Onedrive</a></div><div class="post_share"><div class="social-share" data-image="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/Blog-img/20220101//GjMcnK.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/29/JD-Cookie/" title="浏览器获取京东Cookie教程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">浏览器获取京东Cookie教程</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/17/Termux-Hexo/" title="Termux/Linux搭建Hexo博客"><img class="cover" src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/Blog-img/20220101//Termux.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Termux/Linux搭建Hexo博客</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Giscus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.staticaly.com/gh/hennessey-v/pic@master/icon/author.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Hennessey</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hennessey-v" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OneManager%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">OneManager是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">部署教程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E5%8F%B0%E5%8F%98%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">平台变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#adminloginpage"><span class="toc-number">3.1.</span> <span class="toc-text">adminloginpage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#autoJumpFirstDisk"><span class="toc-number">3.2.</span> <span class="toc-text">autoJumpFirstDisk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#background"><span class="toc-number">3.3.</span> <span class="toc-text">background</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#backgroundm"><span class="toc-number">3.4.</span> <span class="toc-text">backgroundm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#customCss"><span class="toc-number">3.5.</span> <span class="toc-text">customCss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#customScript"><span class="toc-number">3.6.</span> <span class="toc-text">customScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#customTheme"><span class="toc-number">3.7.</span> <span class="toc-text">customTheme</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#disableChangeTheme"><span class="toc-number">3.8.</span> <span class="toc-text">disableChangeTheme</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#disableShowThumb"><span class="toc-number">3.9.</span> <span class="toc-text">disableShowThumb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hideFunctionalityFile"><span class="toc-number">3.10.</span> <span class="toc-text">hideFunctionalityFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#passfile"><span class="toc-number">3.11.</span> <span class="toc-text">passfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sitename"><span class="toc-number">3.12.</span> <span class="toc-text">sitename</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#theme"><span class="toc-number">3.13.</span> <span class="toc-text">theme</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#timezone"><span class="toc-number">3.14.</span> <span class="toc-text">timezone</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E7%9B%98%E7%8B%AC%E7%AB%8B%E5%8F%98%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">每个盘独立变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#diskname"><span class="toc-number">4.1.</span> <span class="toc-text">diskname</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#domain-path"><span class="toc-number">4.2.</span> <span class="toc-text">domain_path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#downloadencrypt"><span class="toc-number">4.3.</span> <span class="toc-text">downloadencrypt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#guestup-path"><span class="toc-number">4.4.</span> <span class="toc-text">guestup_path</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-path"><span class="toc-number">4.5.</span> <span class="toc-text">public_path</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">进阶设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%AB%99ico%E5%9B%BE%E6%A0%87"><span class="toc-number">5.1.</span> <span class="toc-text">设置网站ico图标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B7%E6%96%B0%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87"><span class="toc-number">5.2.</span> <span class="toc-text">刷新自动切换背景图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8index-html%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2"><span class="toc-number">5.3.</span> <span class="toc-text">利用index.html设置自定义页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E9%A1%B6%E9%83%A8%E5%92%8C%E5%BA%95%E9%83%A8%E8%AF%B4%E6%98%8E%E6%96%87%E5%AD%97"><span class="toc-number">5.4.</span> <span class="toc-text">设置顶部和底部说明文字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8head-omf%E8%AE%BE%E7%BD%AE%E4%B8%80%E8%A8%80"><span class="toc-number">5.5.</span> <span class="toc-text">利用head.omf设置一言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8foot-omf%E8%AE%BE%E7%BD%AEValine%E8%AF%84%E8%AE%BA"><span class="toc-number">5.6.</span> <span class="toc-text">利用foot.omf设置Valine评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%8A%A8%E6%80%81%E8%83%8C%E6%99%AF"><span class="toc-number">5.7.</span> <span class="toc-text">设置动态背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BE%8E%E5%8C%96%E8%87%AA%E5%AE%9A%E4%B9%89%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="toc-number">5.8.</span> <span class="toc-text">美化自定义登录页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA"><span class="toc-number">5.9.</span> <span class="toc-text">提示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">6.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/31/JDCK/" title="京东CK提交帮助手册">京东CK提交帮助手册</a><time datetime="2022-10-31T01:57:45.000Z" title="发表于 2022-10-31 09:57:45">2022-10-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Docker06/" title="Docker 仓库管理 (6)">Docker 仓库管理 (6)</a><time datetime="2022-02-12T18:24:45.000Z" title="发表于 2022-02-13 02:24:45">2022-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/02/05/Docker05/" title="Docker 容器连接 (5)"><img src="https://hennessey02.coding.net/p/Pic/d/Pic01/git/raw/master/img//docker-net.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker 容器连接 (5)"/></a><div class="content"><a class="title" href="/2022/02/05/Docker05/" title="Docker 容器连接 (5)">Docker 容器连接 (5)</a><time datetime="2022-02-05T01:57:45.000Z" title="发表于 2022-02-05 09:57:45">2022-02-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/04/Docker04/" title="Docker 镜像使用 (4)">Docker 镜像使用 (4)</a><time datetime="2022-02-04T07:37:45.000Z" title="发表于 2022-02-04 15:37:45">2022-02-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/04/Docker03/" title="Docker 容器使用 (3)">Docker 容器使用 (3)</a><time datetime="2022-02-04T00:57:45.000Z" title="发表于 2022-02-04 08:57:45">2022-02-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Hennessey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadGiscus () {
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'hennessey-v/giscus',
+    'data-repo-id': 'R_kgDOIDnw-w',
+    'data-category-id': 'DIC_kwDOIDnw-84CRmiQ',
+    'data-mapping': 'pathname',
+    'data-theme': nowTheme,
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme () {
+  const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: theme
+    }
+  });
+}
+
+if ('Valine' === 'Giscus' || !false) {
+  if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script></div><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
